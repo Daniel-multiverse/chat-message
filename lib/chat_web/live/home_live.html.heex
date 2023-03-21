@@ -1,0 +1,36 @@
+<div class="flex mt-40">
+    <div class="mx-auto">
+        <.form :let={f} for={:changeset} id="topic-form" phx-submit="goto_topic">
+
+          <!--  <.form> is an Elixir function that generates an HTML form element.
+
+                :let={f} is an Elixir keyword parameter passed to the form function. It binds the form to a variable named f, which will be used to reference the form in the HTML template.
+
+                for={:changeset} is another keyword parameter that specifies the name of the changeset that will be associated with the form. A changeset is a data structure that is used to validate and manipulate incoming data in Elixir/Phoenix applications. 
+                        
+            -->
+                
+
+            <.input field={{f, :topic_name}} value="" placeholder="Enter your topic name.." />
+            <!-- <.input> is an Elixir function that generates an HTML input element.
+
+            field={{f, :topic_name}} is an Elixir keyword parameter passed to the input function. It creates a binding between the input field and a variable f which represents a form, and the field name :topic_name that will be used to identify the value submitted from the form. This means that when the form is submitted, the value entered in this input field will be accessible through the f.topic_name variable.
+
+            value="" sets the initial value of the input field to an empty string.
+            placeholder="Enter your topic name.." sets the placeholder text that is displayed in the input field before the user enters any text. -->
+
+            <br />
+            <.button type="submit">Join Topic</.button>
+        </.form>
+    </div>
+</div>
+
+
+
+<!--  Binding a form to a variable using the :let parameter, allows you to reference the form element in the template using the variable f. This can be useful if you need to access or manipulate the form element directly in the HTML template using Elixir code, or if you need to pass the form element as an argument to a function or component.
+
+                Giving a form element an ID using the id parameter, as in <.form id="topic-form">, allows you to reference the form element in JavaScript or CSS code. 
+                    
+                In summary, binding a form to a variable is useful if you need to reference the form element in Elixir code in the HTML template, while giving a form element an ID is useful if you need to reference the form element in JavaScript or CSS code.
+
+                -->

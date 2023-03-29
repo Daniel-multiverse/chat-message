@@ -39,12 +39,19 @@ defmodule ChatWeb.TopicLive do
 
   def handle_event("message_change", %{"chat" => %{"message" => message}}, socket) do
     {:noreply, assign(socket, message: message)}
+
+    # This is similar to the keyup or keydown in JS DOM everytime the user types into the message bar this function will be called and the message state will be updated
   end
 
   def handle_info(%{event: "new_message", payload: message_data}, socket) do
+    # In the context of Phoenix PubSub, "payload" usually refers to the data that is being sent in a PubSub event.
     Logger.info(chat_messages: socket.assigns.chat_messages)
 
     {:noreply, assign(socket, chat_messages: [message_data])}
+
+    # The second element is a new socket with the chat_messages field in its assigns map updated to include the new message_data. The chat_messages field is set to a list containing only the new message_data, because the handle_info/2 function is called each time a new message is received, and the chat_messages field needs to be updated to include only the most recent message.
+
+    # When the message_data is put inside a list ([message_data]) before being assigned to the chat_messages key, it means that chat_messages will always be a list with only one element, which is the most recent message.
   end
 
   def handle_info(%{event: "presence_diff"}, socket) do
@@ -74,3 +81,5 @@ defmodule ChatWeb.TopicLive do
     """
   end
 end
+
+# Phoenix PubSub is a publish-subscribe (PubSub) system provided by the Phoenix web framework for Elixir. It enables real-time communication between clients and servers using websockets, allowing multiple clients to subscribe to the same topic and receive updates when new data is published to that topic.
